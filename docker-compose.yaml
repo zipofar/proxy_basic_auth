@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  proxy:
+    build: .
+    ports:
+      - 80:80
+      # - 443:443
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/cert:/etc/nginx/cert
+      - ./nginx/.htpasswd:/etc/nginx/.htpasswd
+
+# networks:
+#   default:
+#     external:
+#       name: proxy_default_network
+networks:
+  default:
+    name: 'uffizzi_default_network'
